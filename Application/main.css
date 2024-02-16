@@ -160,6 +160,9 @@ main {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    margin-right: 10px;
+    background-color:var(--grey); /* Background color for each option */
+    color: #EEEEEE; /* Text color for each option */
 }
 
 #new-task-submit {

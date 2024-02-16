@@ -2,13 +2,15 @@ window.addEventListener('load', () => {
     const form = document.querySelector("#new-task-form");
     const input = document.querySelector("#new-task-input");
     const list_el = document.querySelector("#tasks");
+    const due_date_input = document.querySelector("#new-task-due-date");
+    const category_select = document.querySelector("#new-task-category");
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const task = input.value;
-        const task_due_date = document.querySelector("#new-task-due-date").value;
-        const task_category = document.querySelector("#new-task-category").value;
+        const task_due_date = due_date_input.value;
+        const task_category = category_select.value;
 
         const task_el = document.createElement('div');
         task_el.classList.add('task');
@@ -16,7 +18,6 @@ window.addEventListener('load', () => {
         const task_content_el = document.createElement('div');
         task_content_el.classList.add('content');
 
-        // Create due date and category elements
         const task_due_date_el = document.createElement('div');
         task_due_date_el.classList.add('due-date');
         task_due_date_el.innerText = task_due_date;
@@ -57,15 +58,21 @@ window.addEventListener('load', () => {
         list_el.appendChild(task_el);
 
         input.value = '';
+        due_date_input.value = ''; // Clear the due date field
+        category_select.value = ''; // Clear the category field
 
         task_edit_el.addEventListener('click', (e) => {
             if (task_edit_el.innerText.toLowerCase() == "edit") {
                 task_edit_el.innerText = "Save";
                 task_input_el.removeAttribute("readonly");
                 task_input_el.focus();
+                task_due_date_el.contentEditable = true;
+                task_category_el.contentEditable = true;
             } else {
                 task_edit_el.innerText = "Edit";
                 task_input_el.setAttribute("readonly", "readonly");
+                task_due_date_el.contentEditable = false;
+                task_category_el.contentEditable = false;
             }
         });
 
