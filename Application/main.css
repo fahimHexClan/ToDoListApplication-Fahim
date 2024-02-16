@@ -154,3 +154,23 @@ main {
 .task .actions .delete {
     color: crimson;
 }
+#new-task-input,
+#new-task-due-date,
+#new-task-category {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#new-task-submit {
+    padding: 8px 15px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#new-task-submit:hover {
+    opacity: 0.8;
+}
