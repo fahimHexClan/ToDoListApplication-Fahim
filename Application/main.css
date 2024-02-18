@@ -58,7 +58,9 @@ input, button {
 }
 
 #new-task-input::placeholder {
-    color: var(--grey);
+    color: white;
+    font-size: 0.875rem;
+    text-align: center;
 }
 
 #new-task-submit {
@@ -159,11 +161,14 @@ main {
 #new-task-category,
 #Status{
     padding: 5px;
-    border: 1px solid #ccc;
     border-radius: 3px;
     margin-right: 10px;
-    background-color:var(--grey); /* Background color for each option */
+    background-color:var(--darkest); /* Background color for each option */
     color: #EEEEEE; /* Text color for each option */
+    border: 2px solid transparent; /* Set initial border as transparent */
+    border-image: linear-gradient(to right, #EC4899, #8B5CF6); /* Gradient border color */
+    border-image-slice: 1; /* Ensure the whole border is colored */
+
 }
 
 #new-task-submit {
