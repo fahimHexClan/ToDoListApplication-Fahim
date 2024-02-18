@@ -4,6 +4,7 @@ window.addEventListener('load', () => {
     const list_el = document.querySelector("#tasks");
     const due_date_input = document.querySelector("#new-task-due-date");
     const category_select = document.querySelector("#new-task-category");
+    const status_select = document.querySelector("#Status");
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -11,6 +12,7 @@ window.addEventListener('load', () => {
         const task = input.value;
         const task_due_date = due_date_input.value;
         const task_category = category_select.value;
+        const task_status = status_select.value;
 
         const task_el = document.createElement('div');
         task_el.classList.add('task');
@@ -26,8 +28,13 @@ window.addEventListener('load', () => {
         task_category_el.classList.add('category');
         task_category_el.innerText = task_category;
 
+        const task_status_el = document.createElement('div');
+        task_status_el.classList.add('status');
+        task_status_el.innerText = task_status;
+
         task_content_el.appendChild(task_due_date_el);
         task_content_el.appendChild(task_category_el);
+        task_content_el.appendChild(task_status_el);
 
         task_el.appendChild(task_content_el);
 
@@ -60,6 +67,7 @@ window.addEventListener('load', () => {
         input.value = '';
         due_date_input.value = ''; // Clear the due date field
         category_select.value = ''; // Clear the category field
+        status_select.value = ''; // Clear the status field
 
         task_edit_el.addEventListener('click', (e) => {
             if (task_edit_el.innerText.toLowerCase() == "edit") {
@@ -68,11 +76,13 @@ window.addEventListener('load', () => {
                 task_input_el.focus();
                 task_due_date_el.contentEditable = true;
                 task_category_el.contentEditable = true;
+                task_status_el.contentEditable = true;
             } else {
                 task_edit_el.innerText = "Edit";
                 task_input_el.setAttribute("readonly", "readonly");
                 task_due_date_el.contentEditable = false;
                 task_category_el.contentEditable = false;
+                task_status_el.contentEditable = false;
             }
         });
 

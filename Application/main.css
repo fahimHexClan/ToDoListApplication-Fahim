@@ -156,8 +156,9 @@ main {
 }
 #new-task-input,
 #new-task-due-date,
-#new-task-category {
-    padding: 8px;
+#new-task-category,
+#Status{
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-right: 10px;
