@@ -5,6 +5,8 @@ window.addEventListener('load', () => {
     const due_date_input = document.querySelector("#new-task-due-date");
     const category_select = document.querySelector("#new-task-category");
     const status_select = document.querySelector("#Status");
+    const completedTaskCount = document.querySelector("#completed-task-count");
+    const incompleteTaskCount = document.querySelector("#incomplete-task-count");
 
     let currentTaskEl = null;
     let tasks = [];
@@ -15,6 +17,7 @@ window.addEventListener('load', () => {
         tasks.forEach(task => {
             const task_el = createTaskElement(task);
             list_el.appendChild(task_el);
+            updateTaskCounts();
         });
     }
 
@@ -49,6 +52,7 @@ window.addEventListener('load', () => {
                 localStorage.setItem('tasks', JSON.stringify(tasks));
 
                 task_el.remove();
+                updateTaskCounts();
             }
         }
     });
@@ -100,6 +104,7 @@ window.addEventListener('load', () => {
             // Create and append task element
             const task_el = createTaskElement(newTask);
             list_el.appendChild(task_el);
+            updateTaskCounts();
         }
 
         // Save tasks to local storage
@@ -110,6 +115,13 @@ window.addEventListener('load', () => {
         category_select.value = ''; // Clear the category field
         status_select.value = ''; // Clear the status field
     });
+
+    function updateTaskCounts() {
+        const completedTasks = tasks.filter(task => task.status === 'complete');
+        const incompleteTasks = tasks.filter(task => task.status === 'incomplete');
+        completedTaskCount.textContent = `${completedTasks.length} tasks completed`;
+        incompleteTaskCount.textContent = `${incompleteTasks.length} tasks incomplete`;
+    }
 
     function createTaskElement(taskObj) {
         const task_el = document.createElement('div');

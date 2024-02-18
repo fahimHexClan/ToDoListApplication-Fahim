@@ -35,6 +35,21 @@ header h1{
     color: var(--grey);
     margin-bottom: 1rem;
 }
+#completed-task-count,
+#incomplete-task-count {
+    display: inline-block;
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 200;
+    color: var(--grey);
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-radius: 10px; /* Set the border-radius */
+    background-color: var(--darkest);
+    border: 2px solid transparent; /* Set initial border as transparent */
+    border-image: linear-gradient(to right,darkblue, lightseagreen); /* Gradient border color */
+    border-image-slice: 0.5; /* Ensure the whole border is colored */
+}
 
 #new-task-form {
     display: flex;;
