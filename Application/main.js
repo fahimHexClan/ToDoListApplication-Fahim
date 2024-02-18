@@ -18,6 +18,41 @@ window.addEventListener('load', () => {
         });
     }
 
+    list_el.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.classList.contains('edit')) {
+            const task_el = target.closest('.task');
+            if (task_el) {
+                // Add class to highlight the task being edited
+                task_el.classList.add('editing');
+
+                const task_content_el = task_el.querySelector('.content');
+                const task_due_date_el = task_content_el.querySelector('.due-date');
+                const task_category_el = task_content_el.querySelector('.category');
+                const task_status_el = task_content_el.querySelector('.status');
+                const task_input_el = task_content_el.querySelector('.text');
+
+                input.value = task_input_el.value;
+                due_date_input.value = task_due_date_el.innerText;
+                category_select.value = task_category_el.innerText;
+                status_select.value = task_status_el.innerText.toLowerCase() === 'complete' ? 'complete' : 'incomplete';
+
+                currentTaskEl = task_el;
+            }
+        } else if (target.classList.contains('delete')) {
+            const task_el = target.closest('.task');
+            if (task_el) {
+                // Remove task from tasks array
+                tasks = tasks.filter(t => t.id !== task_el.id);
+
+                // Save updated tasks to local storage
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+
+                task_el.remove();
+            }
+        }
+    });
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -47,6 +82,9 @@ window.addEventListener('load', () => {
             task_status_el.innerText = task_status;
             task_input_el.value = task;
 
+            // Remove the editing class to remove the border
+            task_el.classList.remove('editing');
+
             currentTaskEl = null;
         } else {
             // Create new task
@@ -71,38 +109,6 @@ window.addEventListener('load', () => {
         due_date_input.value = ''; // Clear the due date field
         category_select.value = ''; // Clear the category field
         status_select.value = ''; // Clear the status field
-    });
-
-    list_el.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target.classList.contains('edit')) {
-            const task_el = target.closest('.task');
-            if (task_el) {
-                const task_content_el = task_el.querySelector('.content');
-                const task_due_date_el = task_content_el.querySelector('.due-date');
-                const task_category_el = task_content_el.querySelector('.category');
-                const task_status_el = task_content_el.querySelector('.status');
-                const task_input_el = task_content_el.querySelector('.text');
-
-                input.value = task_input_el.value;
-                due_date_input.value = task_due_date_el.innerText;
-                category_select.value = task_category_el.innerText;
-                status_select.value = task_status_el.innerText.toLowerCase() === 'complete' ? 'complete' : 'incomplete';
-
-                currentTaskEl = task_el;
-            }
-        } else if (target.classList.contains('delete')) {
-            const task_el = target.closest('.task');
-            if (task_el) {
-                // Remove task from tasks array
-                tasks = tasks.filter(t => t.id !== task_el.id);
-
-                // Save updated tasks to local storage
-                localStorage.setItem('tasks', JSON.stringify(tasks));
-
-                task_el.remove();
-            }
-        }
     });
 
     function createTaskElement(taskObj) {

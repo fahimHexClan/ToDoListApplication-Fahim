@@ -1,5 +1,5 @@
 :root {
-    --dark: #374151;
+    --dark: #172444;
     --darker: #1F2937;
     --darkest: #111827;
     --grey: #6B7280;
@@ -177,4 +177,7 @@ main {
 
 #new-task-submit:hover {
     opacity: 0.8;
+}
+.task.editing {
+    border: 2px solid var(--pink);
 }
