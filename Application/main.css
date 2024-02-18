@@ -44,11 +44,11 @@ header h1{
     color: var(--grey);
     text-align: center;
     padding: 0.5rem 1rem;
-    border-radius: 10px; /* Set the border-radius */
+    border-radius: 10px;
     background-color: var(--darkest);
-    border: 2px solid transparent; /* Set initial border as transparent */
-    border-image: linear-gradient(to right,darkblue, lightseagreen); /* Gradient border color */
-    border-image-slice: 0.5; /* Ensure the whole border is colored */
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right,darkblue, lightseagreen);
+    border-image-slice: 0.5;
 }
 
 #new-task-form {
@@ -73,7 +73,7 @@ input, button {
 }
 
 #new-task-input::placeholder {
-    color: white;
+    color: var(--grey);
     font-size: 0.875rem;
     text-align: center;
 }
@@ -178,11 +178,11 @@ main {
     padding: 5px;
     border-radius: 3px;
     margin-right: 10px;
-    background-color:var(--darkest); /* Background color for each option */
-    color: #EEEEEE; /* Text color for each option */
-    border: 2px solid transparent; /* Set initial border as transparent */
-    border-image: linear-gradient(to right, #EC4899, #8B5CF6); /* Gradient border color */
-    border-image-slice: 1; /* Ensure the whole border is colored */
+    background-color:var(--darkest);
+    color: var(--grey);
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #EC4899, #8B5CF6);
+    border-image-slice: 1;
 
 }
 

@@ -11,7 +11,6 @@ window.addEventListener('load', () => {
     let currentTaskEl = null;
     let tasks = [];
 
-    // Load tasks from local storage
     if (localStorage.getItem('tasks')) {
         tasks = JSON.parse(localStorage.getItem('tasks'));
         tasks.forEach(task => {
@@ -26,7 +25,6 @@ window.addEventListener('load', () => {
         if (target.classList.contains('edit')) {
             const task_el = target.closest('.task');
             if (task_el) {
-                // Add class to highlight the task being edited
                 task_el.classList.add('editing');
 
                 const task_content_el = task_el.querySelector('.content');
@@ -45,10 +43,8 @@ window.addEventListener('load', () => {
         } else if (target.classList.contains('delete')) {
             const task_el = target.closest('.task');
             if (task_el) {
-                // Remove task from tasks array
                 tasks = tasks.filter(t => t.id !== task_el.id);
 
-                // Save updated tasks to local storage
                 localStorage.setItem('tasks', JSON.stringify(tasks));
 
                 task_el.remove();
@@ -60,20 +56,23 @@ window.addEventListener('load', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const task = input.value;
-        const task_due_date = due_date_input.value;
-        const task_category = category_select.value;
-        const task_status = status_select.value;
+        const task = input.value.trim();
+        const task_due_date = due_date_input.value.trim();
+        const task_category = category_select.value.trim();
+        const task_status = status_select.value.trim();
+
+        if (!task || !task_due_date || !task_category || !task_status) {
+            alert('Please fill out all fields');
+            return;
+        }
 
         if (currentTaskEl) {
-            // Update existing task
             const index = tasks.findIndex(t => t.id === currentTaskEl.id);
             tasks[index].task = task;
             tasks[index].dueDate = task_due_date;
             tasks[index].category = task_category;
             tasks[index].status = task_status;
 
-            // Update task element
             const task_el = currentTaskEl;
             const task_content_el = task_el.querySelector('.content');
             const task_due_date_el = task_content_el.querySelector('.due-date');
@@ -86,12 +85,12 @@ window.addEventListener('load', () => {
             task_status_el.innerText = task_status;
             task_input_el.value = task;
 
-            // Remove the editing class to remove the border
             task_el.classList.remove('editing');
 
             currentTaskEl = null;
+
+            updateTaskCounts();
         } else {
-            // Create new task
             const newTask = {
                 id: Date.now().toString(),
                 task,
@@ -101,19 +100,17 @@ window.addEventListener('load', () => {
             };
             tasks.push(newTask);
 
-            // Create and append task element
             const task_el = createTaskElement(newTask);
             list_el.appendChild(task_el);
             updateTaskCounts();
         }
 
-        // Save tasks to local storage
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
         input.value = '';
-        due_date_input.value = ''; // Clear the due date field
-        category_select.value = ''; // Clear the category field
-        status_select.value = ''; // Clear the status field
+        due_date_input.value = '';
+        category_select.value = '';
+        status_select.value = '';
     });
 
     function updateTaskCounts() {
