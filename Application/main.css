@@ -2,7 +2,7 @@
     --dark: #172444;
     --darker: #1F2937;
     --darkest: #111827;
-    --grey: #a7a7ab;
+    --grey: #f8f8f8;
     --pink: #EC4899;
     --purple: #8B5CF6;
     --light: #EEE;
@@ -19,8 +19,13 @@ body {
     flex-direction: column;
     min-height: 100vh;
     color: #FFF;
+    /*
     background: linear-gradient(#151741 40%, #063966 50%);
+    */
     background-color: var(--dark);
+    background-image:url("https://cdn.pixabay.com/photo/2016/09/14/16/06/wood-1669720_1280.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 header {
@@ -28,6 +33,7 @@ header {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+
 }
 
 header h1{
@@ -48,7 +54,7 @@ header h1{
     border-radius: 10px;
     background-color: var(--darkest);
     border: 2px solid transparent;
-    border-image: linear-gradient(to right,darkblue, lightseagreen);
+    border-image: linear-gradient(to right,white,#a7a7ab);
     border-image-slice: 0.5;
 }
 
@@ -81,9 +87,9 @@ input, button {
 
 #new-task-submit {
     color: var(--pink);
-    font-size: 1.25rem;
+    font-size: 1.60rem;
     font-weight: 700;
-    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    background-image: linear-gradient(to right,#111827,darkslategray, black);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: pointer;

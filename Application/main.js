@@ -14,9 +14,11 @@ window.addEventListener('load', () => {
     if (localStorage.getItem('tasks')) {
         tasks = JSON.parse(localStorage.getItem('tasks'));
         tasks.forEach(task => {
-            const task_el = createTaskElement(task);
-            list_el.appendChild(task_el);
-            updateTaskCounts();
+            if (task.task && task.dueDate && task.category && task.status) {
+                const task_el = createTaskElement(task);
+                list_el.appendChild(task_el);
+                updateTaskCounts();
+            }
         });
     }
 
@@ -131,7 +133,7 @@ window.addEventListener('load', () => {
         const task_category_el = document.createElement('div');
         task_category_el.classList.add('category');
         task_category_el.innerText = taskObj.category;
-        task_category_el.style.fontWeight = 'bold'; // Make the category bold
+        task_category_el.style.fontWeight = 'bold';
 
         const task_input_el = document.createElement('input');
         task_input_el.classList.add('text');
